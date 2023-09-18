@@ -1,8 +1,8 @@
 <?php
 
-namespace Models;
+namespace Models;  // Définition de l'espace de noms.
 
-use Model;
+use Model;  // Importation des classes nécessaires.
 use PDO;
 
 
@@ -11,18 +11,21 @@ class Terrain extends Model
 
 
 
-    public function allTerrain()  {
-
+    // Méthode pour récupérer tous les terrains.
+    public function allTerrain()
+    {
+        // Préparation et exécution d'une requête SQL pour récupérer tous les terrains.
         $stmt = parent::$con->query('SELECT * from terrain');
         $terrains = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    
-        return $terrains;
 
+        // Retour des résultats.
+        return $terrains;
     }
 
-    public function updateTerrain($data)  {
-
-       
+    // Méthode pour mettre à jour l'état d'un terrain.
+    public function updateTerrain($data)
+    {
+        // Préparation et exécution d'une requête SQL pour mettre à jour l'état d'un terrain.
         $updateStmt =  parent::$con->prepare('UPDATE terrain SET location = \'occupé\' WHERE id = :id');
         $updateStmt->bindParam(':id', $data['id']);
         if($updateStmt->execute()){
@@ -30,7 +33,6 @@ class Terrain extends Model
         }
 
         return false;
-
     }
 
 

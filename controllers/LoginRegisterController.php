@@ -363,8 +363,4 @@ class LoginRegisterController extends Controller
       header("Location: /");
       exit();
     }
-
-
-
-    
 }

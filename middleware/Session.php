@@ -5,11 +5,10 @@ namespace Middleware;
 class Session {
 
     /**
-     * Delete: Deletes the value of a specific key of the session.
-     * @access public
-     * @param string $key
-     * @return boolean
-     * @since 1.0.1
+     * Supprime la valeur d'une clé spécifique de la session.
+     *
+     * @param string $key La clé de la session à supprimer.
+     * @return boolean Retourne vrai si la clé existe et est supprimée, faux sinon.
      */
     public static function delete($key) {
         if (self::exists($key)) {
@@ -20,32 +19,29 @@ class Session {
     }
 
     /**
-     * Destroy: Deletes the session.
-     * @access public
+     * Supprime la session.
+     *
      * @return void
-     * @since 1.0.1
      */
     public static function destroy() {
         session_destroy();
     }
 
     /**
-     * Exists: Checks if a specific key of a session exists.
-     * @access public
-     * @param string $key
-     * @return boolean
-     * @since 1.0.1
+     * Vérifie si une clé spécifique de la session existe.
+     *
+     * @param string $key La clé de la session à vérifier.
+     * @return boolean Retourne vrai si la clé existe, faux sinon.
      */
     public static function exists($key) {
         return(isset($_SESSION[$key]));
     }
 
     /**
-     * Get: Returns the value of a specific key of the session if it exists.
-     * @access public
-     * @param string $key
-     * @return string|nothing
-     * @since 1.0.1
+     * Retourne la valeur d'une clé spécifique de la session si elle existe.
+     *
+     * @param string $key La clé de la session dont la valeur doit être récupérée.
+     * @return string|null Retourne la valeur de la clé si elle existe, null sinon.
      */
     public static function get($key) {
         if (self::exists($key)) {
@@ -54,25 +50,23 @@ class Session {
     }
 
     /**
-     * Init: Starts the session.
-     * @access public
+     * Démarre la session.
+     *
      * @return void
-     * @since 1.0.1
      */
     public static function init() {
-        // If no session exist, start the session.
+        // Si aucune session n'existe, démarrez la session.
         if (session_id() == "") {
             session_start();
         }
     }
 
     /**
-     * Put: Sets a specific value to a specific key of the session.
-     * @access public
-     * @param string $key
-     * @param string $value
-     * @return string
-     * @since 1.0.1
+     * Définit une valeur spécifique pour une clé spécifique de la session.
+     *
+     * @param string $key La clé de la session à définir.
+     * @param string $value La valeur à définir pour la clé de la session.
+     * @return string Retourne la valeur qui a été définie.
      */
     public static function put($key, $value) {
         return($_SESSION[$key] = $value);
